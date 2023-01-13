@@ -8,8 +8,12 @@ function App() {
 
   const submit = () => {
     // e.preventDefault();
-    setList([...myList, input]);
-    setInput('');
+    if (input===""){
+      alert("Please enter a todo");
+    }else{
+      setList([...myList, input]);
+      setInput('');
+    }
   }
 
   return (
