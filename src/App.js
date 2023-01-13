@@ -1,67 +1,52 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import SearchIcon from './search.svg';
-import MovieCard from './MovieCard.jsx';
+import React, {useState} from 'react'
+import './App.css'
 
-const API_URL = 'http://www.omdbapi.com?apikey=5d57ab9f'
-
-// const movie1 = {
-//         'Title': "Superman, Spiderman or Batman",
-//         'Type': "movie",
-//         'Year': "2011",
-//        'imdbID': "tt2084949",
-//        'Poster': "N/A"
-//         };
 
 function App() {
- const [movies, setMovies] = useState([]);
- const [searchTerm, setSearchTerm] = useState("");
+  const [input, setInput] = useState("");
+  const [myList, setList] = useState([])
 
-
-  const searchMovies = async (title)=> {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
-
-    setMovies(data.Search);
+  const submit = () => {
+    // e.preventDefault();
+    setList([...myList, input]);
+    setInput('');
   }
 
-  useEffect(()=>{
-    searchMovies('Spiderman')
-  }, [])
-  
   return (
-      <div className="app">
-        <h1>MovieWorld</h1>
-
-        <div className="search">
-          <input
-            placeholder='search for movies'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <img
-            src= {SearchIcon}
-            alt='search'
-            onClick={() => searchMovies(searchTerm)}
-          />
+    <div className='container main'>
+      <div className='container-sm'>
+        <h1>My Todo</h1>
+        <div className='form'>
+          <input 
+            type='text'
+            placeholder='Enter todo'
+            value={input}
+            onChange={(e) => setInput(e.target.value)} 
+            />
+          
+          <button
+            className='btn btn-primary'
+            onClick={() => submit(input)}
+            >
+            Add New
+          </button>
         </div>
-
-        {movies?.length > 0 
-          ? (
-            <div className="container">
-              {movies.map((movie) => (
-                <MovieCard movie={movie} />
-              ))}
-            </div>
-            ) : (
-              <div className="empty">
-                <h2>No movies found</h2>
-              </div>
-            )
-        }
       </div>
-  );
+
+      <div className='card'>
+        <h1>My Todos</h1>
+        <ul>
+          <li className='card'>
+          {
+            myList.map((todo, index) => (
+               <li key={index}>{todo}</li>
+             ))
+          }
+          </li>
+        </ul>
+      </div>
+    </div>  
+  )
 }
 
-
-export default App;
+export default App
