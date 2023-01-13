@@ -82,10 +82,21 @@ border-radius: 4px;
 transition: 0.5s;
 }
 
-button:hover {
-background-color: #3e8e41;
-font-size:0.925rem;
+.btn-danger{
+  background-color: #e24130;
+  margin-bottom: 1rem;
 }
+.btn-danger:hover {
+  background-color: #e24130;
+  font-size:1rem;
+}
+
+button:hover {
+background-color: #4CAF50;
+font-size:1rem;
+}
+
+
 @media only screen and (max-width: 600px) {
   button {
     font-size: 14px;
@@ -99,6 +110,17 @@ font-size:0.925rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.12);
   display: table;
   margin-top: 2rem;
+  padding: 1rem 5rem;
+  width: 70%;
+}
+
+.card-list {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  display: block
+  ;
+  margin-bottom: 2rem;
   padding: 1rem 5rem;
   width: 70%;
 }
@@ -118,5 +140,8 @@ li {
   padding: 10px;
   font-size: 1.1rem;
   
+}
+li:hover{
+  cursor: pointer;
 }
 
