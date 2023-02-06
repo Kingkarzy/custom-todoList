@@ -105,7 +105,7 @@ font-size:1rem;
 }
 
 .card {
-  background-color: white;
+  background-color: rgb(251, 248, 248);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.12);
   display: table;
@@ -115,11 +115,9 @@ font-size:1rem;
 }
 
 .card-list {
-  background-color: white;
+  background-color: rgb(177, 160, 160);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-  display: block
-  ;
   margin-bottom: 2rem;
   padding: 1rem 5rem;
   width: 70%;
@@ -139,9 +137,26 @@ li {
   margin-bottom: 10px;
   padding: 10px;
   font-size: 1.1rem;
-  
+  width: 80%;
 }
 li:hover{
   cursor: pointer;
 }
+.checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  outline: none;
+  margin: 20px;
+  cursor: pointer;
+}
 
+.checkbox:checked {
+  background-color: green;
+}
+.list-container{
+  display:flex;
+  width: 100%;
+}

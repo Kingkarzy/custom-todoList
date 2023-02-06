@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './App.css'
 
 
 function App() {
   const [input, setInput] = useState("");
   const [myList, setList] = useState([]);
-  const [isCompleted, setIsCompleted] = useState(true);
-
+  const [checked, setChecked] = useState([]);
+  
+ 
   const submit = () => {
     if (input===""){
-      alert("Please enter a todo");
+      // alert("Please enter a todo");
     }else{
       setList([...myList, input]);
       setInput('');
@@ -27,15 +28,14 @@ function App() {
   }
 
   const handleChange = (todo) => {
-   if(isCompleted===false){
-    setIsCompleted(!isCompleted); 
-    console.log(`${todo} has been been marked incomplete`)
-   }else{
-    setIsCompleted(!isCompleted); 
-    console.log(`Yayy!!! ${todo} has been completed`)
-   }
+    if (checked.includes(todo)) {
+      setChecked(checked.filter(t => t !== todo));
+      console.log(`${todo} has been removed`);
+    } else {
+      setChecked([...checked, todo]);
+      console.log(`${todo} has been added`);
+    }
   }
-  
 
   return (
     <div className='container main'>
@@ -47,6 +47,7 @@ function App() {
             className='enterTodo'
             placeholder='Enter todo'
             value={input}
+            required
             onChange={(e) => setInput(e.target.value)} 
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -68,28 +69,33 @@ function App() {
         <h1>My Todos</h1>
         <ul className='lists card-list'>
           {
-            
             myList.map((todo, index) => {
-              return(
+             
+              return( 
                 <>
-                <li 
-                  key={index}
-                  onClick={() => {edit(todo)}}
-                  >
-                  {todo}
-                </li>
-                <input 
-                  type="checkbox" 
-                  value={todo}
-                  onChange={() => {handleChange(todo)}} 
-                />
-                <button
-                  className='btn-danger'
-                  onClick={() => deleteTodo(index)}
-                  >
-                    delete
+                  <div className='list-container'>
+                  <li 
+                    key={index}
+                    onClick={() => {edit(todo)}}
+                    >
+                    {todo}
+                  </li>
+                  <input 
+                    type="checkbox" 
+                    className='checkbox'
+                    value={todo}
+                    checked={checked.includes(todo)}
+                    onChange={() => handleChange(todo)} 
+                  />
+                  
+                  <button
+                    className='btn-danger'
+                    onClick={() => deleteTodo(index)}
+                    >
+                      delete
                   </button>
-              </>
+                  </div>
+                </>
               );
             })      
           }
